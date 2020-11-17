@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+<html class="no-js" lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<html lang="en">
+
+<head>
+    <title th:text="#{registration.page.title}"/>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="manifest" href="site.webmanifest"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/img/favicon.ico}"/>
+    <div th:replace="~{csslink}"/>
+    <style>
+        .error {color:red; background: #ffffff }
+    </style>
+
+</head>
+
+<body>
+    <main id="loginbox" class="login-body">
+
+        <form class="form-default" th:action="@{/register/processRegistrationForm}" th:object="${systemUser}" method="post">
+            <div class="login-form">
+                <div class="logo-login"> <a th:href="@{/}"><img th:src="@{/assets/img/logo/loder.png}" alt=""></a> </div>
+                <div class="form-input"> <label for="name" th:text="#{registration.page.title}"/> </div>
+                <div>
+                   <div th:if="${registrationError != null}">
+                        <div class="alert alert-danger col-xs-offset-1 col-xs-10" th:text="${registrationError}"/>
+                   </div>
+
+                    <div class="error" th:if="${#fields.hasErrors('userName')}" th:errors="*{userName}" />
+                    <div style="margin-bottom: 25px" class="form-input">
+                        <label for="name" th:text="#{registration.page.username}"/>
+                        <input th:field="*{userName}" th:placeholder="#{registration.page.username}" class="form-control"/>
+                    </div>
+
+                    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}" />
+                    <div style="margin-bottom: 25px" class="form-input">
+                        <label for="name" th:text="#{registration.page.password}"/>
+                        <input type="password" th:field="*{password}" th:placeholder="#{registration.page.password}" class="form-control"/>
+                    </div>
+
+                    <div class="error" th:if="${#fields.hasErrors('matchingPassword')}" th:errors="*{matchingPassword}" />
+                    <div style="margin-bottom: 25px" class="form-input">
+                        <label for="name" th:text="#{registration.page.matchpassword}"/>
+                        <input type="password" th:field="*{matchingPassword}" th:placeholder="#{registration.page.matchpassword}" class="form-control"/>
+                    </div>
+
+                    <div class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" />
+                    <div style="margin-bottom: 25px" class="form-input">
+                        <label for="name" th:text="#{registration.page.firstname}"/>
+                        <input th:field="*{firstName}" th:placeholder="#{registration.page.firstname}" class="form-control"/>
+                    </div>
+
+                    <div class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" />
+                    <div style="margin-bottom: 25px" class="form-input">
+                        <label for="name" th:text="#{registration.page.lastname}"/>
+                        <input th:field="*{lastName}" th:placeholder="#{registration.page.lastname}" class="form-control"/>
+                    </div>
+
+                    <div class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
+                    <div style="margin-bottom: 25px" class="form-input">
+                        <label for="name" th:text="#{registration.page.email}"/>
+                        <input th:field="*{email}" th:placeholder="#{registration.page.email}" class="form-control"/>
+                    </div>
+
+                    <div style="margin-top: 10px" class="form-input"> <button type="submit" class="registration" th:text="#{registration.page.registration}"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

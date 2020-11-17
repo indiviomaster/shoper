@@ -1,0 +1,47 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge"/>
+    <meta name="description" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title th:text="#{login.page}"/>
+    <link rel="manifest" href="site.webmanifest"/>
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{/assets/img/favicon.ico}"/>
+    <div th:replace="~{csslink}"/>
+</head>
+<body>
+
+<main class="login-body" >
+    <form class="form-default" th:action="@{/authenticateTheUser}" method="POST">
+
+        <div class="login-form">
+            <div class="logo-login">
+                <a th:href="@{/}"><img th:src="@{/assets/img/logo/loder.png}" alt=""></a>
+            </div>
+            <div class="form-input">
+                <label for="name" th:text="#{loginpage.username}"/>
+                <input  type="text" name="username" th:placeholder="#{loginpage.username}"/>
+            </div>
+            <div class="form-input">
+                <label for="name" th:text="#{loginpage.password}"/>
+                <input type="password" name="password" th:placeholder="#{loginpage.password}"/>
+            </div>
+            <div class="form-input pt-30">
+                <input type="submit" name="submit" th:value="#{loginpage.login}">
+            </div>
+
+
+            <!--<a href="#" class="forget" th:text="#{loginpage.fogetpass}"></a>-->
+            <a th:href="@{/register/showRegistrationForm}" class="registration" th:text="#{loginpage.registration}"/>
+        </div>
+    </form>
+
+</main>
+
+<div th:replace="~{scriptlink}"/>
+
+
+</body>
+</html>

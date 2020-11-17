@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Каталог товаров</title>
+
+    <link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
+</head>
+
+<body>
+
+<div th:replace="~{navigation :: navi(Categories)}"/>
+
+
+<div class="container">
+    <h1 th:text="#{categories.list}" />
+    <div>
+        <a th:href="@{/addresses/edit/0}" class="btn btn-primary">Добавить Адрес</a>
+    </div>
+    <table class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <th>#</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="responsive-row" th:each="adr : ${addresses}">
+            <td th:text="${adr.id}"/>
+            <td th:text="${adr.getAddress()}"/>
+            <td th:text="${adr.getUser()}"/>
+            <td>
+                <a  th:href="@{'/addresses/edit/' + ${adr.id}}" class="btn btn-primary">Изменить</a>
+                <a  th:href="@{'/addresses/delete/' + ${adr.id}}" class="btn btn-primary">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+    <!--<nav aria-label="Page navigation example">
+        <ul class="pagination">
+
+            <li th:each="i : ${#numbers.sequence(1, totalPage, 1)}">
+                <a th:class="page-link" th:text="${i}" th:classappend="${page == i ? 'active' : ''}" th:href="@{'/shop/?page=' + ${i} + ${filters}}"></a>
+            </li>
+
+        </ul>
+    </nav>-->
+
+</body>
+</html>

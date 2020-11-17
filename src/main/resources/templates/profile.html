@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <title>Профиль</title>
+
+    <link rel="icon" type="image/png" th:href="@{/favicon.ico}"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}"/>
+</head>
+
+<body>
+
+<div th:replace="~{navigation :: navi(Profile)}" />
+
+<div class="container">
+    <br>
+    <h1>Профиль</h1>
+
+    <div class="col form-group">
+        <div class="card-header">Логин</div>
+        <div th:text="${profile.userName}"/>
+        <div class="card-header">Пароль</div>
+        <div th:text="${profile.password}"/>
+        <div class="card-header">Имя</div>
+        <div th:text="${profile.firstName}"/>
+        <div class="card-header">Фамилия</div>
+        <div th:text="${profile.lastName}"/>
+        <div class="card-header">Почта</div>
+        <div th:text="${profile.email}"/>
+        <div class="card-header">Роли</div>
+        <div th:each = "rol : ${profile.roles}">
+            <div th:text="${rol.getName()}"></div>
+        </div>
+        <div class="card-header">Адреса доставки</div>
+        <div th:each = "adres : ${addresses}">
+            <div th:text="${adres.address}"></div>
+        </div>
+        <!--<div>
+            <form th:action="@{/profile/address}" method="post">
+            <div class="form-input">
+                <label for="name" text="Введите адрес"/>
+                <input type="text" name="adr" placeholder="Введите адрес" class="form-control"/>
+            </div>
+                <button type="submit">Submit</button>
+            </form>
+        </div>-->
+    </div>
+
+</div>
+</body>
+</html>
